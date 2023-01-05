@@ -12,6 +12,7 @@
 </head>
 <body>
 <main class="d-flex flex-nowrap">
+    @include('partials.sidebar')
     @yield('content')
 </main>
 
