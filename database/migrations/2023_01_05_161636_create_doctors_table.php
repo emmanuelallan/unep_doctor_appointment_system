@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('age');
-            $table->integer('gender');
+            $table->string('gender');
             $table->string('specialty');
             $table->string('bio')->nullable();
             $table->integer('years_of_experience')->nullable();
