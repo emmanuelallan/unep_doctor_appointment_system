@@ -25,11 +25,4 @@ class Doctor extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    // update userid after creating doctor
-    public function updateUserId($id)
-    {
-        $this->user_id = $id;
-        $this->save();
-    }
 }
