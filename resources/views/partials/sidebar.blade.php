@@ -12,23 +12,23 @@
             </a>
         </li>
         <li>
-            <a href="{{route('doctors')}}" class="nav-link text-white">
+            <a href="{{route('doctors.index')}}" class="nav-link text-white">
                 <i class="bi bi-person-bounding-box pe-none me-2"></i>
                 Doctors
             </a>
         </li>
-        <li>
-            <a href="{{route('patients')}}" class="nav-link text-white">
-                <i class="bi bi-people pe-none me-2"></i>
-                Patients
-            </a>
-        </li>
-        <li>
-            <a href="{{route('appointments')}}" class="nav-link text-white">
-                <i class="bi bi-journal-bookmark pe-none me-2"></i>
-                Appointments
-            </a>
-        </li>
+{{--        <li>--}}
+{{--            <a href="{{route('patients')}}" class="nav-link text-white">--}}
+{{--                <i class="bi bi-people pe-none me-2"></i>--}}
+{{--                Patients--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        <li>--}}
+{{--            <a href="{{route('appointments')}}" class="nav-link text-white">--}}
+{{--                <i class="bi bi-journal-bookmark pe-none me-2"></i>--}}
+{{--                Appointments--}}
+{{--            </a>--}}
+{{--        </li>--}}
     </ul>
     <hr>
     <div class="dropdown">
@@ -37,12 +37,12 @@
             <strong>Admin</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li>
-                <a class="dropdown-item" href="{{route('setting')}}">
-                    <i class="bi bi-gear pe-none me-2"></i>
-                    Setting
-                </a>
-            </li>
+{{--            <li>--}}
+{{--                <a class="dropdown-item" href="{{route('setting')}}">--}}
+{{--                    <i class="bi bi-gear pe-none me-2"></i>--}}
+{{--                    Setting--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li><hr class="dropdown-divider"></li>
             <li>
                 <a class="dropdown-item" href="#">

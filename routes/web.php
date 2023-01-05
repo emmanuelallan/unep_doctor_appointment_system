@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::get('/doctors', [\App\Http\Controllers\DoctorsController::class, 'index'])->name('doctors');
-Route::get('/patients', [\App\Http\Controllers\PatientsController::class, 'index'])->name('patients');
-Route::get('/appointments', [\App\Http\Controllers\AppointmentsController::class, 'index'])->name('appointments');
-Route::get('/setting', [\App\Http\Controllers\SettingsController::class, 'index'])->name('setting');
+// dashboard
+Route::get('/', 'DashboardController@index')->name('dashboard');
+
+Route::get('/doctors', 'DoctorsController@index')->name('doctors.index');
+Route::get('/doctors/create', 'DoctorsController@create');
+Route::post('/doctors', 'DoctorsController@store');
+Route::get('/doctors/{id}', 'DoctorsController@show');
+Route::get('/doctors/{id}/edit', 'DoctorsController@edit');
+Route::put('/doctors/{id}', 'DoctorsController@update');
+Route::delete('/doctors/{id}', 'DoctorsController@destroy');

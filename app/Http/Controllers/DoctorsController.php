@@ -31,6 +31,7 @@ class DoctorsController extends Controller
         $doctor->specialty = $request->specialty;
         $doctor->years_of_experience = $request->years_of_experience;
         $doctor->phone = $request->phone;
+        $doctor->email = $request->email;
         $doctor->save();
         return redirect('/doctors');
     }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('specialty');
             $table->integer('years_of_experience')->nullable();
             $table->string('phone')->nullable();
+            $table->string('email');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
