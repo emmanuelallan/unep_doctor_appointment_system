@@ -6,13 +6,13 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="{{route('dashboard')}}" class="nav-link active" aria-current="page">
+            <a href="{{route('dashboard')}}" class="{{ Request::routeIs('/') ? 'nav-link active' : 'nav-link' }}">
                 <i class="bi bi-grid-1x2 pe-none me-2"></i>
                 Dashboard
             </a>
         </li>
         <li>
-            <a href="{{route('doctors.index')}}" class="nav-link text-white">
+            <a href="{{route('doctors.index')}}" class="{{ Request::routeIs('doctors') ? 'nav-link text-white active' : 'nav-link text-white' }}">
                 <i class="bi bi-person-bounding-box pe-none me-2"></i>
                 Doctors
             </a>

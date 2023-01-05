@@ -12,9 +12,7 @@ class DoctorsController extends Controller
         return view('doctors.index', compact('doctors'));
     }
 
-    public function show($id)
-    {
-        $doctor = Doctor::findOrFail($id);
+    public function show(Doctor $doctor){
         return view('doctors.show', compact('doctor'));
     }
 
@@ -36,27 +34,25 @@ class DoctorsController extends Controller
         return redirect('/doctors');
     }
 
-    public function edit($id)
+    public function edit(Doctor $doctor)
     {
-        $doctor = Doctor::findOrFail($id);
         return view('doctors.edit', compact('doctor'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Doctor $doctor)
     {
-        $doctor = Doctor::findOrFail($id);
         $doctor->fist_name = $request->fist_name;
         $doctor->last_name = $request->last_name;
         $doctor->specialty = $request->specialty;
         $doctor->years_of_experience = $request->years_of_experience;
         $doctor->phone = $request->phone;
+        $doctor->email = $request->email;
         $doctor->save();
         return redirect('/doctors');
     }
 
-    public function destroy($id)
+    public function destroy(Doctor $doctor)
     {
-        $doctor = Doctor::findOrFail($id);
         $doctor->delete();
         return redirect('/doctors');
     }

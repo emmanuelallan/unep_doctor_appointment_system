@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 // dashboard
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
-Route::get('/doctors', 'DoctorsController@index')->name('doctors.index');
-Route::get('/doctors/create', 'DoctorsController@create');
-Route::post('/doctors', 'DoctorsController@store');
-Route::get('/doctors/{id}', 'DoctorsController@show');
-Route::get('/doctors/{id}/edit', 'DoctorsController@edit');
-Route::put('/doctors/{id}', 'DoctorsController@update');
-Route::delete('/doctors/{id}', 'DoctorsController@destroy');
+Route::get('/doctors', [\App\Http\Controllers\DoctorsController::class, 'index'])->name('doctors.index');
+Route::get('/doctors/create', [\App\Http\Controllers\DoctorsController::class, 'create'])->name('doctors.create');
+Route::post('/doctors', [\App\Http\Controllers\DoctorsController::class, 'store'])->name('doctors.store');
+Route::get('/doctors/{doctor}', [\App\Http\Controllers\DoctorsController::class, 'show'])->name('doctors.show');
+Route::get('/doctors/{doctor}/edit', [\App\Http\Controllers\DoctorsController::class, 'edit'])->name('doctors.edit');
+Route::put('/doctors/{doctor}', [\App\Http\Controllers\DoctorsController::class, 'update'])->name('doctors.update');
+Route::delete('/doctors/{doctor}', [\App\Http\Controllers\DoctorsController::class, 'destroy'])->name('doctors.destroy');
