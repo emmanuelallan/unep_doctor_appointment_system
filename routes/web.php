@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// root to login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
