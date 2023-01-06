@@ -4,9 +4,11 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Appointments') }}
             </h2>
-            <a href="{{ route('appointments.create') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                <i class="bi bi-person-add mr-2"></i> {{ __('Add Appointment') }}
-            </a>
+            @if(request()->user()->is_admin)
+                <a href="{{ route('appointments.create') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                    <i class="bi bi-person-add mr-2"></i> {{ __('Add Appointment') }}
+                </a>
+            @endif
         </div>
     </x-slot>
 

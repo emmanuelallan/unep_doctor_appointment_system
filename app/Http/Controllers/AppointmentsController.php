@@ -20,7 +20,7 @@ class AppointmentsController extends Controller
         if (auth()->user()->is_admin) {
             $appointments = Appointment::with('doctor', 'patient')->get();
         } else {
-            $appointments = Appointment::with('doctor', 'patient')->where('user_id', auth()->id())->get();
+            $appointments = Appointment::with('doctor', 'patient')->where('doctor_id', auth()->id())->get();
         }
 
         return view('appointments.index', compact('appointments'));
