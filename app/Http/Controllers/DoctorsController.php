@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class DoctorsController extends Controller
@@ -36,8 +37,10 @@ class DoctorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
+        // Validate request
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -47,34 +50,51 @@ class DoctorsController extends Controller
             'bio' => 'required',
             'years_of_experience' => 'required',
             'phone' => 'required',
+            'email' => 'required|email', // Validate email
+            'password' => 'required|min:6', // Validate password
         ]);
-
-//        check if email exists
+    
+        // Check if email exists
         $user = User::where('email', $request->email)->first();
         if ($user) {
             return redirect()->back()->with('error', 'Email already exists');
         }
-
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $doctor = new Doctor([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'age' => $request->get('age'),
-            'gender' => $request->get('gender'),
-            'specialty' => $request->get('specialty'),
-            'bio' => $request->get('bio'),
-            'years_of_experience' => $request->get('years_of_experience'),
-            'phone' => $request->get('phone'),
-            'user_id' => $user->id,
-        ]);
-
-        $doctor->save();
-        return redirect('/doctors')->with('success', 'Doctor saved!');
+    
+        // Start transaction
+        DB::beginTransaction();
+        
+        try {
+            // Create the user
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+    
+            // Create the doctor and associate the user_id
+            $doctor = new Doctor([
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'age' => $request->get('age'),
+                'gender' => $request->get('gender'),
+                'specialty' => $request->get('specialty'),
+                'bio' => $request->get('bio'),
+                'years_of_experience' => $request->get('years_of_experience'),
+                'phone' => $request->get('phone'),
+                'user_id' => $user->id, // Set user_id from the newly created user
+            ]);
+    
+            $doctor->save(); // Save the doctor
+    
+            DB::commit(); // Commit the transaction
+            return redirect('/doctors')->with('success', 'Doctor saved!');
+            
+        } catch (\Exception $e) {
+            // If something goes wrong, rollback the transaction
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to create doctor and user');
+        }
     }
+    
 
     /**
      * Display the specified resource.

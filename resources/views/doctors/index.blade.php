@@ -28,7 +28,7 @@
                             @foreach ($doctors as $doctor)
                                 <tr>
                                     <td class="border border-slate-300 py-3 px-3">{{ $doctor->first_name }} {{ $doctor->last_name }}</td>
-                                    <td class="border border-slate-300 py-3 px-3">{{ $doctor->user->email }}</td>
+                                    <td class="border border-slate-300 py-3 px-3">{{ $doctor->user->email ?? 'No email available' }}</td>
                                     <td class="border border-slate-300 py-3 px-3">{{ $doctor->phone }}</td>
                                     <td class="border border-slate-300 py-3 px-3">{{ $doctor->specialty }}</td>
                                     <td class="flex items-center gap-4 justify-center border border-slate-300 py-3 px-3">
